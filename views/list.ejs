@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Display</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <!-- jQuery library -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <!-- Latest compiled JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<center>
+  <h1>Bookings made</h1>
+</center>
+<br>
+<table id="example" class="display " width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>BookingID </th>
+            <th>Name </th>
+            <th>RoomType </th>
+            <th>countOfRooms </th>
+            <th>countOfGuests </th>
+            <th>checkInDate </th>
+            <th>checkInDate </th>
+            <th>checkoutDate</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% for (var k in data){ %>
+          <tr>
+      <%   for(var i in data[k]){ %>
+            <td><%=data[k][i]%></td>
+        <%  }  %>
+        </tr>
+
+      <%    }  %>
+      <tr>
+          <td>Tiger Nixon</td>
+          <td>System Architect</td>
+          <td>Edinburgh</td>
+          <td>61</td>
+          <td>2011/04/25</td>
+          <td>$320,800</td>
+          <td>$320,800</td>
+          <td>$320,800</td>
+      </tr>
+    </tbody>
+
+</table>
+<br>
+<center>
+  <button type="button" class="btn btn-primary btn-lg" >Add Booking</button>
+</center>
+
+  </body>
+</html>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        "pagingType": "full_numbers"
+    } );
+} );
+</script>

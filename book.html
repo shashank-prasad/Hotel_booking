@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, <init></init>ial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style1.css">
+
+</head>
+<body>
+
+
+    <div class="main">
+
+        <div class="container">
+            <div class="booking-content">
+                <div class="booking-image">
+                    <img class="booking-img" src="images/form-img.jpg" alt="Booking Image">
+                </div>
+                <div class="booking-form">
+                    <form id="booking-form" method="post">
+                        <h2>Book your Stay!!</h2>
+                        <div class="form-group form-input">
+                            <input type="text" name="name" id="name" value="" required/>
+                            <label for="name" class="form-label">Your name</label>
+                        </div>
+                        <div class="form-group">
+                            <div class="select-list">
+                                <select name="RoomType" id="RoomType" required>
+                                    <option value="">Select Your Room type</option>
+                                    <option value="type1">Type 1</option>
+                                    <option value="type2">Type 2</option>
+                                    <option value="type3">Type 3</option>
+                                    <option value="type4">Type 4</option>
+                                </select>
+                            </div>
+                        <div class="form-group form-input">
+                            <input type="number" name="countOfRooms" id="countOfRooms" value="" required />
+                            <label for="countOfRooms" class="form-label">Enter Required nuber of rooms</label>
+                        </div>
+                        <div class="form-group form-input">
+                            <input type="number" name="countOfGuests" id="countOfGuests" value="" required />
+                            <label for="countOfGuests" class="form-label">Enter the number of guests</label>
+                        </div>
+                        <div class="form-group form-input">
+                          Select your Check In date
+                            <input type="date" min="2020-04-15" class ="checkIn" name="checkInDate" id="checkInDate" value="" placeholder=" " required/>
+                            <label for="checkInDate" class="form-label"></label>
+                        </div>
+
+                        <div class="form-group form-input">
+                          Enter Check In Time
+                            <input type="time" name="checkInTime" id="checkInTime" value="" required/>
+
+                            <label for="checkInTime" class="form-label"></label>
+                        </div>
+
+                        <div class="form-group form-input">
+                          Select your Check Out date
+                            <input type="date" class ="checkOut" name="checkOutDate" id="checkOutDate" value="" placeholder=" " required/>
+                            <label for="checkOutDate" class="form-label"></label>
+                        </div>
+  <!--
+                        <div class="form-group">
+                            <div class="select-list">
+                                <select name="time" id="time" required>
+                                    <option value="">Time</option>
+                                    <option value="6pm">6:00 PM</option>
+                                    <option value="7pm">7:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="select-list">
+                                <select name="food" id="food" required>
+                                    <option value="">Food</option>
+                                    <option value="seasonalfish">Seasonal steamed fish</option>
+                                    <option value="assortedmushrooms">Assorted mushrooms</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-radio">
+                            <label class="label-radio"> Select Your Dining Space</label>
+                            <div class="radio-item-list">
+                                <span class="radio-item">
+                                    <input type="radio" name="number_people" value="2" id="number_people_2" />
+                                    <label for="number_people_2">2</label>
+                                </span>
+                                <span class="radio-item active">
+                                    <input type="radio" name="number_people" value="4" id="number_people_4" checked="checked" />
+                                    <label for="number_people_4">4</label>
+                                </span>
+                                <span class="radio-item">
+                                    <input type="radio" name="number_people" value="6" id="number_people_6" />
+                                    <label for="number_people_6">6</label>
+                                </span>
+                                <span class="radio-item">
+                                    <input type="radio" name="number_people" value="8" id="number_people_8" />
+                                    <label for="number_people_8">8</label>
+                                </span>
+                                <span class="radio-item">
+                                    <input type="radio" name="number_people" value="10" id="number_people_10" />
+                                    <label for="number_people_10">10</label>
+                                </span>
+                            </div>
+                        </div>
+-->
+                        <div class="form-submit">
+                          <br>
+                            <input type="submit" value="Book now" class="submit" id="submit" name="submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+
+      if(dd<10){
+            dd='0'+dd
+        }
+        if(mm<10){
+            mm='0'+mm
+        }
+
+      today=yyyy+'-'+mm+'-'+dd;
+      document.querySelector("#checkInDate").min= today;
+      document.querySelector("#checkInDate").addEventListener("input",function(){
+        var checkin=document.querySelector("#checkInDate").value;
+        document.querySelector("#checkOutDate").min= checkin;
+      });
+
+
+    </script>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery1.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
