@@ -6,13 +6,14 @@ const session = require('express-session');
 
 var app=express();
 app.use('/', express.static('public'));
+app.use(express.static(__dirname + '/views'));
 app.set("view engine",'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use( bodyParser.json() );
 app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
 
 
-var sess; //GLOBAL
+//var sess; //GLOBAL
 
 var connection=mysql.createConnection({
   host:"localhost",
@@ -39,6 +40,28 @@ app.get("/book",function(req,res){
   res.sendFile(__dirname+"/book.html");
 });
 
+app.get("/home",function(req,res){
+
+  var sess=req.session;
+  if(sess.email){
+    console.log("if");
+    sess.login="Login Out";
+    sess.login_re='/logout';
+  }
+  else{
+    console.log("else");
+    sess.login="Login In";
+    sess.login_re='/login';
+    sess.name="Guest";
+
+  }
+  res.render('home',{sess:sess});
+});
+
+app.get("/contact",function(req,res){
+  res.sendFile(__dirname+"/contact.html");
+});
+
 app.get("/staff",function(req,res){
   let sql= "SELECT * from boookings ";
    connection.query(sql,function(er, rows,fields){
@@ -63,6 +86,7 @@ app.get("/login",function(req,res){
   res.sendFile(__dirname+"/login.html");
 });
 
+
 app.post("/logged",function(req,res){
   var user=req.body.username;
   var pass=req.body.password;
@@ -81,22 +105,31 @@ app.post("/logged",function(req,res){
       //console.log(row.length);
       if(row.length==0){
         //window.alert("Username or Password is incorrect try again");
-        res.write("USERNAME and Password is wrong ");
+        console.log("WRONG PASSWORD");
       }else{
         //SESSION CREATED
-          sess=req.session;
-          sess.email=user;
-        res.write("<h1>You are logged in as User</h1>");
+          var sess=req.session;
+          sess.email=row[0].Email;
+          sess.name=row[0].First_Name;
+          sess.userid=row[0].CliendID;
         console.log(row[0]);
-        res.write("Hi "+row[0].First_Name+" we missed you!");
+        res.redirect("/home");
+//        res.write("Hi "+row[0].First_Name+" we missed you!");
 
       }
 
-      res.send();
+
     }
   });
 
 });
+
+
+app.get("/logout",function(req,res){
+  req.session.destroy();
+  res.redirect("/home");
+});
+
 
 app.post("/registered",function(req,res){
   //first_name
@@ -128,6 +161,28 @@ app.post("/registered",function(req,res){
   });
 });
 
+
+app.post('/cart',function(req,res){
+  console.log(req.body);
+  let name=req.body.name;
+  let countOfRooms=req.body.countOfRooms;
+  let countOfGuests=req.body.countOfGuests;
+  let checkInDate=req.body.checkInDate;
+  let checkInTime=req.body.checkInTime;
+  let checkOutDate=req.body.checkOutDate;
+  let room=req.body.RoomType;
+  let values={'name':name,
+          'RoomType':room,
+              "countOfRooms":countOfRooms,
+              "countOfGuests":countOfGuests,
+              "checkInDate":checkInDate,
+              "checkInTime":checkInTime,
+              "checkOutDate":checkOutDate
+            };
+  var sess=req.session;
+  sess.booking=values;
+  console.log(sess.booking);
+});
 
 app.get("/register",function(req,res){
   res.sendFile(__dirname+"/index.html");
