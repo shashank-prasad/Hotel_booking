@@ -7,10 +7,11 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/cart_css.css">
+
   </head>
-  <body>
+  <body style="background:#f4ebdc">
 
-
+  <br><br>
     <h1>Complete Your Booking</h1>
   <br><br>
     <div class="shopping-cart">
@@ -26,11 +27,10 @@
 
       <div class="product">
         <div class="product-image">
-          <img src="images/nike.jpg">
+          <img style="width: 244px;height: 152px;" src= <%=sess.room_pic_path%> >
         </div>
         <div class="product-details">
-          <div class="product-title"><%=sess.queryResult.RoomType%></div>
-          <p class="product-description"> It has a lightweight, breathable mesh upper with forefoot cables for a locked-down fit.</p>
+          <div class="product-title" style="font-size: x-large;font-weight: bold;"><%=sess.queryResult.RoomType%></div>
         </div>
 
         <div class="product-price" id="fare"><%=sess.queryResult.Fare%></div>

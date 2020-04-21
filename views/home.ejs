@@ -51,8 +51,7 @@
                         <!-- logo -->
                         <div class="col-xl-2 col-lg-2">
                           <div class="logo">
-                                       <img src="assets/img/logo/logo.png" alt="" style="position: fixed;right: 1450px;top: 35px;">
-                                    </div>
+                              <img src="assets/img/logo/logo.png" alt="" style="position: absolute;left: -130px;top: 2px;">                                    </div>
                           <h1 style="font-weight: bold;font-size: 22px;/*! width: 300px; *//*! position: absolute; */">Welcome, <%=sess.name%>!</h1>
                         </div>
 
@@ -66,7 +65,7 @@
                                         <li><a href="#services" class="smoothScroll">Services</a></li>
                                         <li><a href="#testimonial" class="smoothScroll">Testimonial</a></li>
                                         <li><a href="#gallery" class="smoothScroll">  Gallery</a></li>
-                                        <li><a href="/contact" >Contact</a></li>
+                                        <li><a href="#footer" class="smoothScroll">Contact Us</a></li>
                                         <li><a href=<%=sess.b%>> My Bookings</a></li>
                                     </ul>
                                 </nav>
@@ -110,30 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero.jpg" >
-                    <div class="container">
-                        <div class="row justify-content-center text-center">
-                            <div class="col-xl-9">
-                                <div class="h1-slider-caption">
-                                    <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
-                                    <h3 data-animation="fadeInDown" data-delay=".4s">Hotel & Resourt</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="single-slider  hero-overly slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero.jpg" >
-                    <div class="container">
-                        <div class="row justify-content-center text-center">
-                            <div class="col-xl-9">
-                                <div class="h1-slider-caption">
-                                    <h1 data-animation="fadeInUp" data-delay=".4s">top hotel in the city</h1>
-                                    <h3 data-animation="fadeInDown" data-delay=".4s">Hotel & Resourt</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <!-- slider Area End-->
@@ -148,7 +124,7 @@
                             <img src="assets/img/customer/customar1.png" class="customar-img1" alt="">
                             <img src="assets/img/customer/customar2.png" class="customar-img2" alt="">
                             <div class="service-experience heartbeat">
-                                <h3>25 Years of Service<br>Experience</h3>
+                                <h3>15 Years of Service<br>Experience</h3>
                             </div>
                         </div>
                    </div>
@@ -158,7 +134,7 @@
                             <h2>Make the customer the hero of your story</h2>
                             <div class="caption-details">
                                 <p class="pera-dtails">Lorem ipsum dolor sit amet, consectetur adipisic- ing elit, sed do eiusmod tempor inc. </p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud. </p>
+                                <p>The story of Marian Hotel, which opened in 2005, is a tale of continual innovation, remarkable expansion and an immense dedication to the highest of standards. Now Marian Hotel has become a renowned name in hospitality industry, offering quality products and services in order to fulfill banquet, restaurant, and housekeeping requirements. </p>
                             <!--    <a href="#" class="btn more-btn1">Learn More <i class="ti-angle-right"></i> </a>-->
                             </div>
                         </div>
@@ -187,10 +163,10 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                               <a href="rooms.html"><img src="assets/img/rooms/room1.jpg" alt="assets/img/rooms/room1.jpg"></a>
+                               <a href="/book"><img src="assets/img/rooms/room_1.jpeg" alt="assets/img/rooms/room1.jpg"></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="rooms.html"><%=sess.room_data[0]['RoomType']%></a></h3>
+                                <h3><a href="/book"><%=sess.room_data[0]['RoomType']%></a></h3>
                                 <div class="per-night">
                                     <span><u>₹</u><%=sess.room_data[0]['Fare']%> <span>/ per day</span></span>
                                 </div>
@@ -201,7 +177,7 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                               <a href="rooms.html"><img src="assets/img/rooms/room2.jpg" alt=""></a>
+                               <a href="/book"><img src="assets/img/rooms/room_2.jpeg" alt=""></a>
                             </div>
                             <div class="room-caption">
                                 <h3><a href="/book"><%=sess.room_data[1]['RoomType']%></a></h3>
@@ -215,10 +191,10 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                               <a href="/book"> <img src="assets/img/rooms/room3.jpg" alt=""></a>
+                               <a href="/book"> <img src="assets/img/rooms/room_3.jpeg" alt=""></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="rooms.html"><%=sess.room_data[2]['RoomType']%></a></h3>
+                                <h3><a href="/book"><%=sess.room_data[2]['RoomType']%></a></h3>
                                 <div class="per-night">
                                     <span><u>₹</u><%=sess.room_data[2]['Fare']%> <span>/ per night</span></span>
                                 </div>
@@ -229,7 +205,7 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                                <a href="/book"><img src="assets/img/rooms/room4.jpg" alt=""></a>
+                                <a href="/book"><img src="assets/img/rooms/room_4.jpeg" alt=""></a>
                             </div>
                             <div class="room-caption">
                                 <h3><a href="/book"><%=sess.room_data[3]['RoomType']%></a></h3>
@@ -243,7 +219,7 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                                <a href="rooms.html"><img src="assets/img/rooms/room5.jpg" alt=""></a>
+                                <a href="/book"><img src="assets/img/rooms/room_5.jpeg" alt=""></a>
                             </div>
                             <div class="room-caption">
                                 <h3><a href="/book"><%=sess.room_data[4]['RoomType']%></a></h3>
@@ -257,7 +233,7 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                               <a href="rooms.html"> <img src="assets/img/rooms/room6.jpg" alt=""></a>
+                               <a href="rooms.html"> <img src="assets/img/rooms/room_6.jpeg" alt=""></a>
                             </div>
                             <div class="room-caption">
                                 <h3><a href="/book"><%=sess.room_data[5]['RoomType']%></a></h3>
@@ -288,7 +264,11 @@
                             <div class="dining-caption">
                                 <span>Our resturent</span>
                                 <h3>Dining & Drinks</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim <br>veniam, quis nostrud.</p>
+                                <p>Join us for a lively dining experience and enjoy a variety Asian, Western and Indian cuisines, as they are being prepared live from three interactive show kitchens.
+
+The restaurant provides picturesque indoor and outdoor seating options with bright, sun-filled interiors and flowing water features to perfectly complement the market-style culinary delight.
+
+The floor-to-ceiling windows add to the contemporary ambience and three separate live cooking stations offer freshly cooked vegetables, meats and seafood prepared à la minute. </p>
 <!--                             <a href="#" class="btn border-btn">Learn More <i class="ti-angle-right"></i> </a> -->
                             </div>
                         </div>
@@ -303,7 +283,7 @@
                             <div class="dining-caption text-right">
                                 <span>Our Pool</span>
                                 <h3>Swimming Pool</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod<br> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim <br>veniam, quis nostrud.</p>
+                                <p>the grand outdoor swimming pool at The Marian Hotel is one of the largest pools in the continent. It’s one of the most striking highlights of the Spanish Colonial Revival-style hotel, which opened in 1926 and was designated a National Historic Landmark in 1996. The pool has been well-maintained over the years. It was refurbished under the direction of landscape architect Emilio Fuster in 1992. The project involved the addition of private cabanas and resurfacing of the pool with polished marble.</p>
       <!--                         <a href="#" class="btn border-btn">Learn More  <i class="ti-angle-right"></i></a>   -->
                             </div>
                         </div>
@@ -330,7 +310,7 @@
                                 </div>
                                  <!-- Testimonial Content -->
                                 <div class="testimonial-caption text-center">
-                                    <p>Yorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+                                    <p>Marion is good place to stay. Co-operative staff, food quality good.Just away from main city around 4 to 5 kilometers. But stay worth it. No issue in car parking and program arrangements and other gatherings.
                                     </p>
                                     <!-- Rattion -->
                                     <div class="testimonial-ratting">
@@ -350,7 +330,7 @@
                                 <!-- Testimonial tittle -->
                                 <div class="font-back-tittle mb-105">
                                     <div class="archivment-front">
-                                        <img src="assets/img/logo/testimonial.png" alt="">
+                                        <img src="assets/img/comment/comment_2.png" alt="">
                                     </div>
                                     <h3 class="archivment-back">Testimonial</h3>
                                 </div>
@@ -378,51 +358,6 @@
         <!-- Testimonial End -->
 
 
-        <div class="section-top-border">
-  				<h3>Image Gallery</h3>
-  				<div class="row gallery-item">
-  					<div class="col-md-4">
-  						<a href="assets/img/elements/g1.jpg" class="img-pop-up">
-  							<div class="single-gallery-image" style="background: url(assets/img/elements/g1.jpg);"></div>
-  						</a>
-  					</div>
-  					<div class="col-md-4">
-  						<a href="assets/img/elements/g2.jpg" class="img-pop-up">
-  							<div class="single-gallery-image" style="background: url(assets/img/elements/g2.jpg);"></div>
-  						</a>
-  					</div>
-  					<div class="col-md-4">
-  						<a href="assets/img/elements/g3.jpg" class="img-pop-up">
-  							<div class="single-gallery-image" style="background: url(assets/img/elements/g3.jpg);"></div>
-  						</a>
-  					</div>
-  					<div class="col-md-6">
-  						<a href="assets/img/elements/g4.jpg" class="img-pop-up">
-  							<div class="single-gallery-image" style="background: url(assets/img/elements/g4.jpg);"></div>
-  						</a>
-  					</div>
-  					<div class="col-md-6">
-  						<a href="assets/img/elements/g5.jpg" class="img-pop-up">
-  							<div class="single-gallery-image" style="background: url(assets/img/elements/g5.jpg);"></div>
-  						</a>
-  					</div>
-  					<div class="col-md-4">
-  						<a href="assets/img/elements/g6.jpg" class="img-pop-up">
-  							<div class="single-gallery-image" style="background: url(assets/img/elements/g6.jpg);"></div>
-  						</a>
-  					</div>
-  					<div class="col-md-4">
-  						<a href="assets/img/elements/g7.jpg" class="img-pop-up">
-  							<div class="single-gallery-image" style="background: url(assets/img/elements/g7.jpg);"></div>
-  						</a>
-  					</div>
-  					<div class="col-md-4">
-  						<a href="assets/img/elements/g8.jpg" class="img-pop-up">
-  							<div class="single-gallery-image" style="background: url(assets/img/elements/g8.jpg);"></div>
-  						</a>
-  					</div>
-  				</div>
-  			</div>
         <!-- Gallery img Start-->
         <div class="gallery-area fix" >
             <div class="container-fluid p-0">
@@ -447,7 +382,7 @@
     </main>
    <footer>
        <!-- Footer Start-->
-       <div class="footer-area black-bg footer-padding">
+       <div class="footer-area black-bg footer-padding" id="footer">
            <div class="container">
                <div class="row d-flex justify-content-between">
                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">

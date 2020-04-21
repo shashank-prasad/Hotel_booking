@@ -71,13 +71,6 @@ app.get("/home",function(req,res){
       res.render('home',{sess:sess});
     }
   });
-
-
-
-
-
-
-
 });
 
 app.get("/contact",function(req,res){
@@ -184,6 +177,13 @@ app.post("/logged",function(req,res){
 
 app.post("/sucessful",function(req,res){
   var sess=req.session;
+  let card_no=req.body.card_number;
+  let exp_date=req.body.exp_date;
+  let cvc=req.body.cvc;
+  let name=req.body.name;
+
+
+
   console.log("DDOONNNEE" +"for "+sess.userid);
   console.log(sess.booking);
 
@@ -203,6 +203,27 @@ app.post("/sucessful",function(req,res){
       else{
         console.log("Entry of "+book_values+" completed sucessfully!");
         console.log(result);
+
+        connection.query("SELECT BookingID FROM Bookings ORDER BY BookingID DESC LIMIT 1",function(er,row,field){
+          if(er){
+            console.log(er);
+          }else{
+            console.log(row[0].BookingID);
+            console.log(row);
+            let bid=row[0].BookingID;
+            let insert="INSERT INTO payment (BookingID,Card_Number,Card_Expiration_date,CVV,Owner_name) VALUES ?";
+            let pay=[[bid,card_no,exp_date,cvc,name]];
+            connection.query(insert,[pay],function(e,result2){
+              if(e){
+                console.log(e);
+              }else{
+                console.log("PAYMENT ADDED");
+              }
+            });
+          }
+        });
+
+
         res.render("success",{sess:sess});
       }
     });
@@ -213,6 +234,8 @@ app.post("/sucessful",function(req,res){
 app.get("/cart",function(req,res){
   var sess=req.session;
   console.log(sess.booking);
+  sess.room_pic_path="assets/img/rooms/room_"+sess.booking.RoomID+".jpeg";
+  console.log(sess.room_pic_path);
   res.render('cart',{sess:sess});
 });
 
