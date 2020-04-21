@@ -27,6 +27,7 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Register</h2>
+                    <h4 style="color:red;"><%=sess.alert%></h4>
                     <form action="/registered" method="POST" name='register' onsubmit="return validate()">
                         <div class="row row-space">
                             <div class="col-2">
@@ -84,19 +85,19 @@
                         </div>
                         <div class="input-group">
                             <label class="label">User name</label>
-                            <input class="input--style-4" type="text" name="user_name" required=required>
+                            <input class="input--style-4" type="text" name="user_name" id="user" required=required>
                         </div>
                         <div class="input-group">
                             <label class="label">password</label>
-                            <input class="input--style-4" type="password" name="password" required=required>
+                            <input class="input--style-4" type="password" name="password"  pattern=".{6,}" title="6 or more characters" required=required>
                         </div>
                         <div class="input-group">
                             <label class="label">Confirm Password</label>
-                            <input class="input--style-4" type="password" name="confirmPassword" required=required>
+                            <input class="input--style-4" type="password" name="confirmPassword"  pattern=".{6,}" title="6 or more characters" required=required>
                         </div>
   <!--                    <div class="input-group">
                             <label class="label">Subject</label>
-                            <div class="rs-select2 js-select-simple select--no-search">
+                            <div class="rs-select2 js-select-simple selectno-search">
                                 <select name="subject">
                                     <option disabled="disabled" selected="selected">Choose option</option>
                                     <option>Subject 1</option>
@@ -114,6 +115,7 @@
             </div>
         </div>
     </div>
+    <!-- Main JS-->
     <script src="js/validation.js" charset="utf-8"></script>
 
     <!-- Jquery JS-->
@@ -123,7 +125,7 @@
     <script src="vendor/datepicker/moment.min.js"></script>
     <script src="vendor/datepicker/daterangepicker.js"></script>
 
-    <!-- Main JS-->
+
    <script src="js/global.js"></script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->

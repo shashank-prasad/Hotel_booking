@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Display</title>
+    <title>My Bookings</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <center>
-  <h1>Bookings made</h1>
+  <h1>My Bookings</h1>
 </center>
 <br>
 <table id="example" class="display " width="100%" cellspacing="0">
@@ -24,12 +24,12 @@
         <tr>
             <th>BookingID </th>
             <th>Name </th>
-            <th>RoomType </th>
-            <th>countOfRooms </th>
-            <th>countOfGuests </th>
-            <th>checkInDate </th>
-            <th>checkInTime </th>
-            <th>checkoutDate</th>
+            <th>Name(Guest arriving)</th>
+            <th>Room Type </th>
+            <th>Number of Booked Rooms</th>
+            <th>Check In Date </th>
+            <th>Check In Time </th>
+            <th>Check Out Date</th>
             <th>Duration of Stay</th>
         </tr>
     </thead>
@@ -37,9 +37,13 @@
       <% for (var k in data){ %>
           <tr>
       <%   for(var i in data[k]){ %>
-          <% console.log(sess.name); %>
-
-            <td><%=data[k][i]%></td>
+        <% if(i=="ClientID"){ %>
+          <td><%=sess.name %></td>
+        <% } else if(i=="RoomID"){ %>
+            <td><%=rooms[data[k][i]-1] %></td>
+          <% } else{%>
+          <td>  <%=data[k][i]%></td>
+            <% }%>
         <%  }  %>
         </tr>
 

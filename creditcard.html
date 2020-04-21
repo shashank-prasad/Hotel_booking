@@ -32,13 +32,13 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="/sucessful" method="post">
+                    <form role="form" action="/sucessful" method="post" name=credit onsubmit="return validate()">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label>CARD NUMBER</label>
                                     <div class="input-group">
-                                        <input type="tel" class="form-control" placeholder="Valid Card Number" required/>
+                                        <input name='card_number' type="tel" class="form-control"  pattern="[0-9]{16}" title="Valid 16-digit Card number" placeholder="Valid Card Number" required/>
                                         <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
                                     </div>
                                 </div>
@@ -48,13 +48,13 @@
                             <div class="col-xs-7 col-md-7">
                                 <div class="form-group">
                                     <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
-                                    <input type="tel" class="form-control" placeholder="MM / YY" required/>
+                                    <input name=exp_date type="text" class="form-control" pattern="(0[1-9]|1[012])/(2[1-9])" title="Follow the Format: MM/YY"placeholder="MM / YY" required/>
                                 </div>
                             </div>
                             <div class="col-xs-5 col-md-5 pull-right">
                                 <div class="form-group">
                                     <label>CV CODE</label>
-                                    <input type="tel" class="form-control" placeholder="CVC" required/>
+                                    <input name='cvc' type="tel" class="form-control" pattern="[0-9]{3}" title="3 digit CVV Required" placeholder="CVC" required/>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label>CARD OWNER</label>
-                                    <input type="text" class="form-control" placeholder="Card Owner Names" required/>
+                                    <input name ='name' type="text" class="form-control" placeholder="Card Owner Names" required/>
                                 </div>
                             </div>
                         </div>

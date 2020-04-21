@@ -4,6 +4,7 @@ const mysql=require("mysql");
 const bodyParser=require('body-parser');
 const session = require('express-session');
 
+
 var app=express();
 app.use('/', express.static('public'));
 app.use(express.static(__dirname + '/views'));
@@ -41,49 +42,99 @@ app.get("/book",function(req,res){
 });
 
 app.get("/home",function(req,res){
-
   var sess=req.session;
+
+
   if(sess.email){
     console.log("if");
-    sess.login="Login Out";
+    sess.login="Log Out";
     sess.login_re='/logout';
+    sess.b="/my_booking";
   }
   else{
     console.log("else");
-    sess.login="Login In";
+    sess.login="Log In";
     sess.login_re='/login';
     sess.name="Guest";
-
+    sess.b="/login";
   }
-  res.render('home',{sess:sess});
+
+  let sql="SELECT * FROM rooms";
+  connection.query(sql,function(er,rows,fields){
+    if(er){
+      console.log(er);
+    }else{
+
+      sess.room_data=rows;
+      console.log("ROW DATA: ");
+      console.log(sess.room_data);
+      res.render('home',{sess:sess});
+    }
+  });
+
+
+
+
+
+
+
 });
 
 app.get("/contact",function(req,res){
   res.sendFile(__dirname+"/contact.html");
 });
 
+
+app.get("/my_booking",function(req,res){
+  let sess=req.session;
+  console.log(sess.userid);
+  let sql= "SELECT * from bookings WHERE ClientID=?";
+  let rooms=["Single Room","Single Room","Super Deluxe Room","Executive Suite","Garden Suite","President Suite"];
+  let uid=sess.userid;
+  console.log(rooms[0]);
+  connection.query(sql,[uid],function(er, rows,fields){
+    if(er){
+      console.log("Can't SELECT");
+      console.log(er);
+    }
+    else{
+      var x;
+
+      for(x in rows){
+        console.log(rows[x]);
+      }
+      res.render("bookings_log",{data:rows, sess:sess,rooms:rooms});
+  }
+  });
+});
+
+
+
 app.get("/staff",function(req,res){
-  let sql= "SELECT * from boookings ";
+  var sess=req.session;
+
+  let sql= "SELECT * from bookings ";
    connection.query(sql,function(er, rows,fields){
      if(er){
        console.log("Can't SELECT");
        console.log(er);
      }
      else{
-       //var j=JSON.parse(rows);
        var x;
+
        for(x in rows){
          console.log(rows[x]);
        }
-      // console.log(j);
-       res.render("list",{data:rows});
-     //console.log(j);
+       res.render("list",{data:rows, sess:sess});
    }
    });
 });
 
 app.get("/login",function(req,res){
-  res.sendFile(__dirname+"/login.html");
+
+  var sess=req.session;
+  sess.wrong_login="";
+  res.render("login",{sess:sess});
 });
 
 
@@ -91,7 +142,7 @@ app.post("/logged",function(req,res){
   var user=req.body.username;
   var pass=req.body.password;
 
-
+  let sess=req.session;
   console.log(user);
   console.log(pass);
 
@@ -106,7 +157,9 @@ app.post("/logged",function(req,res){
       if(row.length==0){
         //window.alert("Username or Password is incorrect try again");
         console.log("WRONG PASSWORD");
-        res.redirect('/login');
+        let sess=req.session;
+        sess.wrong_login="*Invalid Username or password, Try Again!";
+        res.render("login",{sess:sess});
       }else{
         //SESSION CREATED
           console.log("SESSION CREATED");
@@ -122,12 +175,8 @@ app.post("/logged",function(req,res){
         }
         else{
         res.redirect("/home");
+        }
       }
-//        res.write("Hi "+row[0].First_Name+" we missed you!");
-
-      }
-
-
     }
   });
 
@@ -174,6 +223,7 @@ app.get("/logout",function(req,res){
 
 
 app.post("/registered",function(req,res){
+  let sess=req.session;
   //first_name
   //last_name
   //dateOfBirth
@@ -186,21 +236,38 @@ app.post("/registered",function(req,res){
   let user=req.body.user_name;
   let pass=req.body.password;
 
+  let check_query= "SELECT * from clients WHERE Email=? OR username=? ";
+  let check=[[mail,user]];
 
-  let values=[[fname,lname,dateOfBirth,gender,mail,phone,user,pass]];
+connection.query(check_query,[mail,user],function(er,rows,fields){
+  if(er){
+    console.log(er);
+  }else{
+    if(rows.length!=0){
+      console.log(user);
+      console.log(mail);
+      console.log("ALREADY IN USE");
+      sess.alert="*Username or Email ID Already Exits";
+      res.render("register",{sess:sess});
+    }else{
+      let values=[[fname,lname,dateOfBirth,gender,mail,phone,user,pass]];
 
 
-  let sql="INSERT INTO clients (First_Name,Last_Name,DOB,Gender,Email,Contact_Number,username,password) VALUES ?";
-  connection.query(sql,[values],function(err,result){
-    if(err){
-      console.log(err);
+      let sql="INSERT INTO clients (First_Name,Last_Name,DOB,Gender,Email,Contact_Number,username,password) VALUES ?";
+      connection.query(sql,[values],function(err,result){
+        if(err){
+          console.log(err);
+        }
+        else{
+          console.log("Entry of "+fname+" completed sucessfully!");
+          console.log(result);
+          res.redirect("/login");
+        }
+      });
     }
-    else{
-      console.log("Entry of "+fname+" completed sucessfully!");
-      console.log(result);
-      res.redirect("/login");
-    }
-  });
+  }
+});
+
 });
 
 
@@ -208,16 +275,25 @@ app.post('/cart',function(req,res){
   console.log(req.body);
   let name=req.body.name;
   let countOfRooms=req.body.countOfRooms;
-  let days=req.body.days;
   let checkInDate=req.body.checkInDate;
   let checkInTime=req.body.checkInTime;
   let checkOutDate=req.body.checkOutDate;
   let room=req.body.RoomID;
+
+
+ var NtpDate = new Date(checkInDate);
+var ReportDate = new Date(checkOutDate);
+var timeDiff = Math.abs(ReportDate.getTime() - NtpDate.getTime());
+var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+ //alert(diffDays);
+console.log("Period =" + diffDays );
+
+
   console.log(typeof(checkInDate));
   let values={'name':name,
               'RoomID':room,
               "countOfRooms":countOfRooms,
-              "days":days,
+              "days":diffDays,
               "checkInDate":checkInDate,
               "checkInTime":checkInTime,
               "checkOutDate":checkOutDate
@@ -256,8 +332,12 @@ app.get("/payment",function(req,res){
 });
 
 app.get("/register",function(req,res){
-  res.sendFile(__dirname+"/index.html");
+
+  let sess=req.session;
+      sess.alert="";
+      res.render("register",{sess:sess});
 });
+
 app.listen(3000,function(err){
     if(!!err){
       console.log("ERROR");

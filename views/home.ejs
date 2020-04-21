@@ -67,6 +67,7 @@
                                         <li><a href="#testimonial" class="smoothScroll">Testimonial</a></li>
                                         <li><a href="#gallery" class="smoothScroll">  Gallery</a></li>
                                         <li><a href="/contact" >Contact</a></li>
+                                        <li><a href=<%=sess.b%>> My Bookings</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -186,12 +187,12 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                               <a href="rooms.html"><img src="assets/img/rooms/room1.jpg" alt=""></a>
+                               <a href="rooms.html"><img src="assets/img/rooms/room1.jpg" alt="assets/img/rooms/room1.jpg"></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                                <h3><a href="rooms.html"><%=sess.room_data[0]['RoomType']%></a></h3>
                                 <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
+                                    <span><u>₹</u><%=sess.room_data[0]['Fare']%> <span>/ per day</span></span>
                                 </div>
                             </div>
                         </div>
@@ -203,9 +204,9 @@
                                <a href="rooms.html"><img src="assets/img/rooms/room2.jpg" alt=""></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                                <h3><a href="/book"><%=sess.room_data[1]['RoomType']%></a></h3>
                                 <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
+                                    <span><u>₹</u><%=sess.room_data[1]['Fare']%> <span>/ per night</span></span>
                                 </div>
                             </div>
                         </div>
@@ -214,12 +215,12 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                               <a href="rooms.html"> <img src="assets/img/rooms/room3.jpg" alt=""></a>
+                               <a href="/book"> <img src="assets/img/rooms/room3.jpg" alt=""></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                                <h3><a href="rooms.html"><%=sess.room_data[2]['RoomType']%></a></h3>
                                 <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
+                                    <span><u>₹</u><%=sess.room_data[2]['Fare']%> <span>/ per night</span></span>
                                 </div>
                             </div>
                         </div>
@@ -228,12 +229,12 @@
                         <!-- Single Room -->
                         <div class="single-room mb-50">
                             <div class="room-img">
-                                <a href="rooms.html"><img src="assets/img/rooms/room4.jpg" alt=""></a>
+                                <a href="/book"><img src="assets/img/rooms/room4.jpg" alt=""></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                                <h3><a href="/book"><%=sess.room_data[3]['RoomType']%></a></h3>
                                 <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
+                                    <span><u>₹</u><%=sess.room_data[3]['Fare']%> <span>/ per night</span></span>
                                 </div>
                             </div>
                         </div>
@@ -245,9 +246,9 @@
                                 <a href="rooms.html"><img src="assets/img/rooms/room5.jpg" alt=""></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                                <h3><a href="/book"><%=sess.room_data[4]['RoomType']%></a></h3>
                                 <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
+                                    <span><u>₹</u><%=sess.room_data[4]['Fare']%> <span>/ per night</span></span>
                                 </div>
                             </div>
                         </div>
@@ -259,9 +260,9 @@
                                <a href="rooms.html"> <img src="assets/img/rooms/room6.jpg" alt=""></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="rooms.html">Classic Double Bed</a></h3>
+                                <h3><a href="/book"><%=sess.room_data[5]['RoomType']%></a></h3>
                                 <div class="per-night">
-                                    <span><u>$</u>150 <span>/ par night</span></span>
+                                    <span><u>₹</u><%=sess.room_data[5]['Fare']%> <span>/ per night</span></span>
                                 </div>
                             </div>
                         </div>

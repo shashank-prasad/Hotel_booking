@@ -4,6 +4,9 @@ function validate()
   var phone=document.forms["register"]["phone"].value;
   var pass1=document.forms["register"]["password"].value;
   var pass2=document.forms["register"]["confirmPassword"].value;
+  var user=document.forms["register"]["user_name"].value;
+  var email=document.forms["register"]["email"].value;
+
 
 
   var split_dob = dob_entry.split("/");
@@ -15,9 +18,13 @@ function validate()
   var mili_dif = Math.abs(today.getTime() - dob_asdate.getTime());
   var age = (mili_dif / (1000 * 3600 * 24 * 365.25));
   if(age<18){
-    window.alert("Age less than 18 Years old");
+    window.alert( "Age Below 18 Years" );
     return false;
   }
+
+
+
+
 
   var phoneno_pattern = /^\d{10}$/;
   if(!phone.match(phoneno_pattern))

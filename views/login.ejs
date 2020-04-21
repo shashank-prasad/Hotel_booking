@@ -33,7 +33,8 @@ Author URL: http://w3layouts.com
 	<section class="w3l-forms-23">
 		<div class="forms23-block-hny">
 			<div class="wrapper">
-				<h1>Login to Book your room!!</h1>
+				<h1>You need to login!!</h1>
+
 				<!-- if logo is image enable this
 					<a class="logo" href="index.html">
 					  <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
@@ -47,7 +48,10 @@ Author URL: http://w3layouts.com
 								<img src="images/user.png" alt="" class="img-responsive">
 							</div>
 						</div>
+
+
 						<div class="bottom-content">
+							<p style="color:red"><%=sess.wrong_login%></p>
 							<form action="/logged" method="post">
 								<input type="text" name="username" class="input-form" placeholder="Your Username"
 										required="required" />
