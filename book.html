@@ -33,14 +33,14 @@
 
                         <div  class="form-group form-input">
                             <div class="select-list">
-                                <select   name="RoomType"  required>
+                                <select   name="RoomID"  required>
                                     <option value="">Select Your Room type</option>
-                                    <option value="Single Room">Single Room</option>
-                                    <option value="Deluxe Room">Deluxe Room</option>
-                                    <option value="Super Deluxe Room">Super Deluxe Room</option>
-                                    <option value="Executive Suite">Executive Suite</option>
-                                    <option value="Garden Suite">Garden Suite</option>
-                                    <option value="President Suite">President Suite</option>
+                                    <option value="1">Single Room</option>
+                                    <option value="2">Deluxe Room</option>
+                                    <option value="3">Super Deluxe Room</option>
+                                    <option value="4">Executive Suite</option>
+                                    <option value="5">Garden Suite</option>
+                                    <option value="6">President Suite</option>
                                 </select>
                             </div>
                           </div>
@@ -49,8 +49,8 @@
                             <label for="countOfRooms" class="form-label">Enter Required nuber of rooms</label>
                         </div>
                         <div class="form-group form-input">
-                            <input type="number" min =0 name="countOfGuests" id="countOfGuests" value="" required />
-                            <label for="countOfGuests" class="form-label">Enter the number of guests</label>
+                            <input type="number" min =0 name="days" id="days" value="" required />
+                            <label for="days" class="form-label">Duration of stay (in days) </label>
                         </div>
                         <div class="form-group form-input">
                           Select your Check In date
@@ -81,7 +81,24 @@
         </div>
 
     </div>
+<script type="text/javascript">
 
+
+    function GetDays(){
+                    var dropdt = new Date(document.getElementById("checkInDate").value);
+                    var pickdt = new Date(document.getElementById("checkOutDate").value);
+                    return parseInt((dropdt - pickdt) / (24 * 3600 * 1000));
+            }
+
+
+            document.querySelector("#checkOutDate").addEventListener("input",  function (){
+                document.getElementById("#output").inner="hi";
+              if(document.getElementById("checkOutDate")){
+                  document.getElementById("output").value=GetDays();
+              });
+        }
+
+</script>
     <script type="text/javascript">
       var today = new Date();
       var dd = today.getDate();

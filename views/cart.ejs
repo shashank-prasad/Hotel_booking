@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/cart_css.css">
+  </head>
+  <body>
+
+
+    <h1>Complete Your Booking</h1>
+  <br><br>
+    <div class="shopping-cart">
+
+      <div class="column-labels">
+        <label class="product-image">Image</label>
+        <label class="product-details">Room Type</label>
+        <label class="product-price">Fare per room</label>
+        <label class="product-quantity">Number_of_Rooms x Duration_of_Stay   </label>
+
+        <label class="product-line-price">Total Fare</label>      </div>
+
+
+      <div class="product">
+        <div class="product-image">
+          <img src="images/nike.jpg">
+        </div>
+        <div class="product-details">
+          <div class="product-title"><%=sess.queryResult.RoomType%></div>
+          <p class="product-description"> It has a lightweight, breathable mesh upper with forefoot cables for a locked-down fit.</p>
+        </div>
+
+        <div class="product-price" id="fare"><%=sess.queryResult.Fare%></div>
+        <div class="product-quantity">
+            <%=sess.booking.countOfRooms%> Rooms x   <%=sess.booking.days%> Days
+        </div>
+
+        <div class="product-line-price" id='total_fare'>25.98</div>
+      </div>
+
+
+      <div class="totals">
+        <div class="totals-item">
+          <label>Subtotal</label>
+          <div class="totals-value" id="cart-subtotal">0</div>
+        </div>
+        <div class="totals-item">
+          <label>Tax (5%)</label>
+          <div class="totals-value" id="cart-tax">0</div>
+        </div>
+
+        <div class="totals-item totals-item-total">
+          <label>Grand Total</label>
+          <div class="totals-value" id="cart-total">0</div>
+        </div>
+      </div>
+      <a href="/payment" class="checkout btn btn-success btn-lg">CheckOut </a>
+
+    </div>
+  </body>
+
+    <script type="text/javascript">
+    var tax=0.05;
+    var ro=<%=sess.booking.countOfRooms%>;
+    var d=<%=sess.booking.days%>;
+    var f=<%=sess.queryResult.Fare%>;
+  console.log(f);
+      var totalFare= ro*d*f;
+      document.querySelector('#total_fare').innerHTML=totalFare;
+      document.querySelector("#cart-subtotal").innerHTML=totalFare;
+      var taxFare=totalFare*tax;
+      document.querySelector("#cart-tax").innerHTML=taxFare;
+
+      document.querySelector("#cart-total").innerHTML=taxFare+totalFare;
+    </script>
+
+  <script src="js/cart_javascript.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  document.querySelector("#re").click(function(){
+    document.querySelector(".product-removal").slideUp();
+  });
+  </script>
+</html>
