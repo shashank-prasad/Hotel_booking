@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2020 at 07:17 PM
+-- Generation Time: Apr 25, 2020 at 12:40 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -51,7 +51,11 @@ INSERT INTO `bookings` (`BookingID`, `ClientID`, `Name`, `RoomID`, `NumberOfRoom
 (7, 3, 'Sp', 6, 1, '2020-04-21', '01:02', '2020-04-23', 1),
 (8, 27, 'ved', 6, 1, '2020-04-30', '00:00', '2020-05-13', 13),
 (9, 27, 'Sample', 4, 1, '2020-04-23', '01:02', '2020-05-02', 9),
-(10, 6, 'Shashank', 3, 1, '2020-04-30', '12:12', '2020-05-07', 7);
+(10, 6, 'Shashank', 3, 1, '2020-04-30', '12:12', '2020-05-07', 7),
+(11, 27, 'dn', 2, 1, '2020-04-23', '01:01', '2020-04-24', 1),
+(12, 32, 'Fagun', 2, 1, '2020-04-25', '13:02', '2020-04-27', 2),
+(13, 27, 'name', 5, 1, '2020-05-01', '13:02', '2020-05-01', 0),
+(14, 32, 'Shashank', 3, 1, '2020-04-30', '13:01', '2020-05-07', 7);
 
 -- --------------------------------------------------------
 
@@ -83,7 +87,13 @@ INSERT INTO `clients` (`ClientID`, `First_Name`, `Last_Name`, `DOB`, `Email`, `C
 (6, 'Shivangi ', 'Prasad', '29/09/1994', 'shivangiprsd@gmail.com', 2147483647, 'shivangi', 'shivangi', 'Female'),
 (7, 'Niharika', 'Jaiswal', '03/04/1992', 'niharika_03@gmail.com', 2147483647, 'niki', 'niharika', 'Female'),
 (8, 'Shashank', 'Prasad', '15/04/1987', 'shashank@gmail.com', 2147483647, 'sdad', '123', 'Female'),
-(27, 'Harsh', 'Prasad', '20-10-1998', 'vedant20003@gmail.com', 2147483647, 'Vedant', '123456', 'Male');
+(27, 'Harsh', 'Prasad', '20-10-1998', 'vedant20003@gmail.com', 2147483647, 'Vedant', '123456', 'Male'),
+(28, 'Bloody ', 'Marry', '11/04/1984', 'bloody@gmail.com', 1345624569, 'bloody_marry*3', 'hello123', 'Male'),
+(29, 'ssda', 'sdad', '18/04/1985', 'sda@gm.com', 1231231231, 'sd', 'hello123', 'Male'),
+(30, 'sd', 'asd', '16/04/1986', 'sda@f.com', 1231231231, 'qwe', 'hello123', 'Male'),
+(31, 'sad', 'ads', '07/04/1982', 'asd@g.com', 1231231230, 'er', 'hello123', 'Male'),
+(32, 'Fagun', 'Shadi', '23/08/1999', 'fagun.shadi17@vit.edu', 2147483647, 'fagun_shadi23', 'legit123', 'Male'),
+(33, 'Harshit', 'Prasad', '21/05/1994', 'harshit_p@gmail.com', 2147483647, 'harshit_p', '$2b$10$T8FEYtjcjIFynfZXhRTjPeRFtQRpORCp.Jag9J7OPKe7BHdGLdEbe', 'Male');
 
 -- --------------------------------------------------------
 
@@ -107,7 +117,11 @@ CREATE TABLE `payment` (
 INSERT INTO `payment` (`Payment ID`, `BookingID`, `Card_Number`, `Card_Expiration_date`, `CVV`, `Owner_name`) VALUES
 (1, 7, 1234567894562134, '04/12', 256, 'Shashank Prasad'),
 (2, 9, 1234564564789657, '04/22', 256, 'Vedant'),
-(3, 10, 1234123412341234, '11/22', 234, 'Shivangi');
+(3, 10, 1234123412341234, '11/22', 234, 'Shivangi'),
+(4, 11, 1234123412341234, '11/22', 123, 'ads'),
+(5, 12, 1234123412341234, '08/22', 213, 'Fagun'),
+(6, 13, 1234564564789654, '08/22', 789, 'SP'),
+(7, 14, 1234123412341234, '12/21', 122, 'Hello');
 
 -- --------------------------------------------------------
 
@@ -199,19 +213,19 @@ ALTER TABLE `sampletable`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `BookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `BookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `Payment ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Payment ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `rooms`
