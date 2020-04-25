@@ -144,8 +144,8 @@ app.post("/logged",function(req,res){
   //console.log(user);
   //console.log(pass);
 
-  let sql="SELECT * FROM clients WHERE username= ? AND password= ?";
-  connection.query(sql,[user,pass],function(err,row,field){
+  let sql="SELECT * FROM clients WHERE username= ?";
+  connection.query(sql,[user],function(err,row,field){
     if(err){
       console.log("Can't login");
       console.log(err);
@@ -159,6 +159,15 @@ app.post("/logged",function(req,res){
         sess.wrong_login="*Invalid Username or password, Try Again!";
         res.render("login",{sess:sess});
       }else{
+        bcrypt.compare(pass, row[0].password, function (err, result) {
+            if (result == false) {
+              let sess=req.session;
+              sess.wrong_login="*Invalid Username or password, Try Again!";
+              res.render("login",{sess:sess});
+                // redirect to location
+                } else {
+
+
         //SESSION CREATED
           //console.log("SESSION CREATED");
           var sess=req.session;
@@ -175,9 +184,10 @@ app.post("/logged",function(req,res){
         else{
         res.redirect("/home");
         }
-        }
-
+      }
+});
     }
+  }
   });
 
 });
@@ -284,8 +294,11 @@ connection.query(check_query,[mail,user],function(er,rows,fields){
       //console.log("PASSWORD1: ");
       //console.log(pass);
         let sql="INSERT INTO clients (First_Name,Last_Name,DOB,Gender,Email,Contact_Number,username,password) VALUES (?)";
-      bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(pass, salt, function(err, hash) {
+        bcrypt.hash(pass, saltRounds, function(err, encrypted){
+          pass= encrypted;
+          //next();
+
+
       connection.query(sql,[[fname,lname,dateOfBirth,gender,mail,phone,user,pass]],function(err,result){
         if(err){
           console.log(err);
@@ -298,11 +311,11 @@ connection.query(check_query,[mail,user],function(er,rows,fields){
       });
       // Store hash in your password DB.
     });
-  });
 
-    }
-  }
-});
+
+}//if length row !=0
+  }//else no error in check
+});//check email n username
 
 });
 
