@@ -34,12 +34,49 @@ connection.connect(function(error){
 	}
 });
 
+
+
 //connection.on('error', function(err) {
 //  console.log("[mysql error]",err);
 //});
 
+
+app.get("/room_data",function(req,res){
+  var sess=req.session;
+
+  let sql= "SELECT * from rooms ";
+   connection.query(sql,function(er, rows,fields){
+     if(er){
+       console.log("Can't SELECT");
+       console.log(er);
+     }
+     else{
+       res.render("room_data",{data:rows, sess:sess});
+   }
+   });
+});
+
+
+app.post("/room_data",function(req,res){
+  let roomid=req.body.RoomID;
+  let col=req.body.field;
+  let value=req.body.value;
+
+  let sql= "UPDATE rooms SET "+col+" = ? WHERE RoomID= ?;";
+  connection.query(sql,[value,roomid],function(er, result){
+    if(er){
+      console.log(er);
+    }else{
+      //console.log("Updated");
+      res.redirect("/room_data");
+    }
+  });
+});
+
+
 app.get("/book",function(req,res){
-  res.sendFile(__dirname+"/book.html");
+  let sess=req.session;
+  res.render("book",{sess:sess});
 });
 
 app.get("/",function(req,res){
@@ -48,7 +85,7 @@ app.get("/",function(req,res){
 app.get("/home",function(req,res){
   var sess=req.session;
   delete req.session.booking;
-
+  sess.book_head='';
   if(sess.email){
     //console.log("if");
     sess.login="Log Out";
@@ -104,28 +141,34 @@ app.get("/my_booking",function(req,res){
   }
   });
 });
-
-
-
 app.get("/staff",function(req,res){
-  var sess=req.session;
-
-  let sql= "SELECT * from bookings ";
-   connection.query(sql,function(er, rows,fields){
-     if(er){
-       console.log("Can't SELECT");
-       console.log(er);
-     }
-     else{
-       //var x;
-
-       //for(x in rows){
-      //   console.log(rows[x]);
-      // }
-       res.render("list",{data:rows, sess:sess});
-   }
-   });
+  res.sendFile(__dirname+"/staff.html");
 });
+
+
+app.get("/all_bookings",function(req,res){
+  //console.log(sess.userid);
+  let sql= "SELECT * from bookings";
+  let rooms=["Single Room","Single Room","Super Deluxe Room","Executive Suite","Garden Suite","President Suite"];
+
+  //console.log(rooms[0]);
+  connection.query(sql,function(er, rows,fields){
+    if(er){
+      console.log("Can't SELECT");
+      console.log(er);
+    }
+    else{
+      res.render("list",{data:rows,rooms:rooms});
+      //var x;
+      //for(x in rows){
+        //console.log(rows[x]);
+      //}
+
+  }
+  });
+});
+
+
 
 app.get("/login",function(req,res){
 
@@ -220,6 +263,29 @@ app.post("/sucessful",function(req,res){
       else{
         //console.log("Entry of "+book_values+" completed sucessfully!");
         //console.log(result);
+        let room_count=0;
+          let check_avail="SELECT RoomType,Rooms_available FROM rooms WHERE RoomID=?";
+          connection.query(check_avail,[sess.booking.RoomID],function(er, rows, fields){
+                if(er){
+                  console.log(er);
+                }else{
+                  room_count=rows[0].Rooms_available;
+
+                //  console.log("ROOM count = ");
+                //  console.log(rows[0].Rooms_available);
+        let set= room_count-sess.booking.countOfRooms;
+
+        let id_room=sess.booking.RoomID;
+        //console.log("COUNT= "+set);
+      //  console.log("ROOM id= "+id_room);
+        let update_room_count="UPDATE rooms SET Rooms_available = ? WHERE RoomID= ?; " ;
+
+        connection.query(update_room_count,[set,id_room],function(er,result){
+            if(er){
+              console.log(er);
+            }else{
+              //console.log("Updates success");
+              //console.log(result);
 
         connection.query("SELECT BookingID FROM Bookings ORDER BY BookingID DESC LIMIT 1",function(er,row,field){
           if(er){
@@ -229,6 +295,9 @@ app.post("/sucessful",function(req,res){
             //console.log(row);
             let bid=row[0].BookingID;
             let insert="INSERT INTO payment (BookingID,Card_Number,Card_Expiration_date,CVV,Owner_name) VALUES ?";
+            bcrypt.hash(card_no, saltRounds, function(err, encrypted){
+              card_no= encrypted;
+
             let pay=[[bid,card_no,exp_date,cvc,name]];
             connection.query(insert,[pay],function(e,result2){
               if(e){
@@ -236,10 +305,13 @@ app.post("/sucessful",function(req,res){
               }
                 //console.log("PAYMENT ADDED");
             });
+          });
           }
         });
-
-
+      }
+  });
+}
+});
         res.render("success",{sess:sess});
       }
     });
@@ -309,10 +381,7 @@ connection.query(check_query,[mail,user],function(er,rows,fields){
           res.redirect("/login");
         }
       });
-      // Store hash in your password DB.
     });
-
-
 }//if length row !=0
   }//else no error in check
 });//check email n username
@@ -322,6 +391,7 @@ connection.query(check_query,[mail,user],function(er,rows,fields){
 
 app.post('/cart',function(req,res){
   //console.log(req.body);
+  let sess=req.session;
   let name=req.body.name;
   let countOfRooms=req.body.countOfRooms;
   let checkInDate=req.body.checkInDate;
@@ -329,41 +399,64 @@ app.post('/cart',function(req,res){
   let checkOutDate=req.body.checkOutDate;
   let room=req.body.RoomID;
 
+  let check_avail="SELECT RoomType,Rooms_available FROM rooms WHERE RoomID=?";
+  connection.query(check_avail,[room],function(er, rows, fields){
+        if(er){
+          console.log(er);
+        }else{
+          //console.log("ROOM count = ");
+          //console.log(rows[0].Rooms_available);
+          if(rows[0].Rooms_available-countOfRooms<=0){
+            //console.log("NOT Rooms_available");
+              sess.book_head="Only "+String(rows[0].Rooms_available)+" "+rows[0].RoomType +" available, requirement can't be satisfied. Please Try Again!";
+              res.redirect('/book');
+          }else{
+            //ROOMS ARE AVAILABLE
+            var NtpDate = new Date(checkInDate);
+            var ReportDate = new Date(checkOutDate);
+            var timeDiff = Math.abs(ReportDate.getTime() - NtpDate.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+             //alert(diffDays);
+            //console.log("Period =" + diffDays );
+            if(diffDays==0){
+              diffDays=1;
+            }
 
- var NtpDate = new Date(checkInDate);
-var ReportDate = new Date(checkOutDate);
-var timeDiff = Math.abs(ReportDate.getTime() - NtpDate.getTime());
-var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
- //alert(diffDays);
-//console.log("Period =" + diffDays );
+              //console.log(typeof(checkInDate));
+              let values={'name':name,
+                          'RoomID':room,
+                          "countOfRooms":countOfRooms,
+                          "days":diffDays,
+                          "checkInDate":checkInDate,
+                          "checkInTime":checkInTime,
+                          "checkOutDate":checkOutDate
+                        };
+
+              sess.booking=values;
+
+              let sql="SELECT * from rooms WHERE RoomID=?  ";
+              connection.query(sql,[room],function(err,row,field){
+                if(err){
+                  //console.log(sql);
+                  console.log(err);
+                }
+                else{
+                  //console.log(sql);
+                  //console.log("Entry of "+name+" completed sucessfully!");
+                  //console.log(row);
+                  sess.queryResult=row[0];
+                }
+
+              res.redirect('/cart');
+
+          });
+        }
+      }
+  });
 
 
-  //console.log(typeof(checkInDate));
-  let values={'name':name,
-              'RoomID':room,
-              "countOfRooms":countOfRooms,
-              "days":diffDays,
-              "checkInDate":checkInDate,
-              "checkInTime":checkInTime,
-              "checkOutDate":checkOutDate
-            };
-  var sess=req.session;
-  sess.booking=values;
 
-  let sql="SELECT * from rooms WHERE RoomID=?  ";
-  connection.query(sql,[room],function(err,row,field){
-    if(err){
-      //console.log(sql);
-      console.log(err);
-    }
-    else{
-      //console.log(sql);
-      //console.log("Entry of "+name+" completed sucessfully!");
-      //console.log(row);
-      sess.queryResult=row[0];
-    }
 
-  res.redirect('/cart');
 });
 
 
@@ -378,7 +471,7 @@ app.get("/payment",function(req,res){
   }
 });
 
-});
+
 
 app.get("/register",function(req,res){
 

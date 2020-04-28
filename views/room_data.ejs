@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>My Bookings</title>
+    <title>Room Data</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
@@ -16,33 +16,24 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 <center>
-  <h1>My Bookings</h1>
+  <h1>Rooms data</h1>
 </center>
 <br>
 <table id="example" class="display " width="100%" cellspacing="0">
     <thead>
         <tr>
-            <th>BookingID </th>
-            <th>Name(Guest arriving)</th>
-            <th>Room Type </th>
-            <th>Number of Booked Rooms</th>
-            <th>Check In Date </th>
-            <th>Check In Time </th>
-            <th>Check Out Date</th>
-            <th>Duration of Stay</th>
+          <th>Room ID </th>
+          <th>RoomType </th>
+          <th>Guest Capacity </th>
+          <th>Fare </th>
+          <th>Rooms Currently Available </th>
         </tr>
     </thead>
     <tbody>
       <% for (var k in data){ %>
           <tr>
       <%   for(var i in data[k]){ %>
-        <% if(i=="ClientID"){ %>
-          <% continue; %>
-        <% } else if(i=="RoomID"){ %>
-            <td><%=rooms[data[k][i]-1] %></td>
-          <% } else{%>
-          <td>  <%=data[k][i]%></td>
-            <% }%>
+            <td><%=data[k][i]%></td>
         <%  }  %>
         </tr>
 
@@ -53,7 +44,30 @@
 </table>
 <br>
 <center>
-  <a href="/book" class="btn btn-primary btn-lg ">Add Bookings</a>
+  <form class="" action="/room_data" method="post">
+    <h3>Update data</h3>
+    <br>
+    <select   name="RoomID"  required>
+        <option value="">Select Your Room type</option>
+        <option value="1">Single Room      </option>
+        <option value="2">Deluxe Room        </option>
+        <option value="3">Super Deluxe Room  </option>
+        <option value="4">Executive Suite    </option>
+        <option value="5">Garden Suite      </option>
+        <option value="6">President Suite    </option>
+    </select>
+    <br><br>
+    <select   name="field"  required>
+        <option value="">Select what to update</option>
+        <option value="Fare"> Fare of room</option>
+        <option value="Rooms_available">Rooms available</option>
+    </select>
+    <br>
+    <br>
+    <input type="number" name="value" value="" placeholder="Enter New Value" required>
+    <br><br>
+    <input type="submit" name="" value="Update">
+  </form>
 </center>
 
   </body>
