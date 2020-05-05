@@ -27,8 +27,7 @@ var connection=mysql.createConnection({
 
 connection.connect(function(error){
   if(error){
-    console.log(error);  //Ye output aara hai humesha
-
+    console.log(error);
   }else{
     console.log("Connected");
 	}
@@ -465,6 +464,7 @@ app.get("/payment",function(req,res){
   //console.log(sess);
   //console.log(sess.email);
   if(sess.email){
+    
     res.sendFile(__dirname+"/creditcard.html");
   }else{
     res.redirect("/login");

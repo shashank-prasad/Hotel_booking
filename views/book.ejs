@@ -13,9 +13,7 @@
     <link rel="stylesheet" href="css/style1.css">
 
 </head>
-<body>
-
-
+  <body>
     <div class="main">
 
         <div class="container">
@@ -24,7 +22,7 @@
                     <img class="booking-img" src="images/form-img.jpg" alt="Booking Image">
                 </div>
                 <div class="booking-form">
-                    <form  action='/cart'  id="booking-form" method="post">
+                    <form autocomplete="off" action='/cart'  id="booking-form" method="post">
                         <h2>Book my Stay!!</h2>
                         <h5 style="color:red"><%=sess.book_head%></h5>
                         <div class="form-group form-input">
@@ -36,12 +34,12 @@
                             <div class="select-list">
                                 <select   name="RoomID"  required>
                                     <option value="">Select Your Room type</option>
-                                    <option value="1">Single Room        - ₹1500 per day</option>
-                                    <option value="2">Deluxe Room        - ₹2500 per day</option>
-                                    <option value="3">Super Deluxe Room  - ₹3500 per day</option>
-                                    <option value="4">Executive Suite    - ₹7000 per day</option>
-                                    <option value="5">Garden Suite       - ₹8000 per day</option>
-                                    <option value="6">President Suite     - ₹10000 per day</option>
+                                    <option value="1">Single Room        - ₹<%=sess.room_data[0]['Fare']%> per day</option>
+                                    <option value="2">Deluxe Room        - ₹<%=sess.room_data[1]['Fare']%> per day</option>
+                                    <option value="3">Super Deluxe Room  - ₹<%=sess.room_data[2]['Fare']%> per day</option>
+                                    <option value="4">Executive Suite    - ₹<%=sess.room_data[3]['Fare']%> per day</option>
+                                    <option value="5">Garden Suite       - ₹<%=sess.room_data[4]['Fare']%> per day</option>
+                                    <option value="6">President Suite     - ₹<%=sess.room_data[5]['Fare']%> per day</option>
                                 </select>
                             </div>
                           </div>

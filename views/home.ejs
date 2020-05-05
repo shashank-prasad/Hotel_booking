@@ -66,7 +66,11 @@
                                         <li><a href="#testimonial" class="smoothScroll">Testimonial</a></li>
                                         <li><a href="#gallery" class="smoothScroll">  Gallery</a></li>
                                         <li><a href="#footer" class="smoothScroll">Contact Us</a></li>
+                                        <% if(sess.name=="admin"){  %>
+                                            <li><a href="/staff">Administration </a></li>
+                                        <% }else{ %>
                                         <li><a href=<%=sess.b%>> My Bookings</a></li>
+                                        <% } %>
                                     </ul>
                                 </nav>
                             </div>
@@ -76,6 +80,7 @@
                             <div class="header-btn1">
                                 <a href= <%=sess.login_re%> style=" width: 100px;position: absolute;left: 172px;top: 13px;color: black;font-weight: bold;" class=""><%=sess.login %></a>
                                 <a href="/book" class="btn btn1 " style="width:130px" >Book Online</a>
+
                             </div>
 
                         </div>
@@ -180,7 +185,7 @@
                                <a href="/book"><img src="assets/img/rooms/room_2.jpeg" alt=""></a>
                             </div>
                             <div class="room-caption">
-                                <h3><a href="/book"><%=sess.room_data[1]['RoomType']%></a></h3>
+                                <h3><a href="/book"> <%=sess.room_data[1]['RoomType']%></a></h3>
                                 <div class="per-night">
                                     <span><u>₹</u><%=sess.room_data[1]['Fare']%> <span>/ per night</span></span>
                                 </div>
@@ -336,7 +341,7 @@ The floor-to-ceiling windows add to the contemporary ambience and three separate
                                 </div>
                                 <!-- Testimonial Content -->
                                 <div class="testimonial-caption text-center">
-                                    <p>Yorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.
+                                    <p>One of the best Stays I ever had, Should visit at any cost!
                                     </p>
                                     <div class="testimonial-ratting">
                                         <a href="#"><i class="fas fa-star"></i></a>
@@ -346,7 +351,7 @@ The floor-to-ceiling windows add to the contemporary ambience and three separate
                                         <a href="#"><i class="fas fa-star"></i></a>
                                     </div>
                                     <div class="rattiong-caption" id ='gallery'>
-                                        <span>Clifford Frazier, <span>Regular Client</span> </span>
+                                        <span>James Jordon, <span>Client</span> </span>
                                     </div>
                                 </div>
                             </div>
@@ -399,7 +404,7 @@ The floor-to-ceiling windows add to the contemporary ambience and three separate
                          </div>
                          <div class="footer-pera">
                               <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+   <script>document.write(new Date().getFullYear());</script>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                          </div>
                       </div>
@@ -409,10 +414,10 @@ The floor-to-ceiling windows add to the contemporary ambience and three separate
                            <div class="footer-tittle">
                                <h4>Quick Links</h4>
                                <ul>
-                                   <li><a href="#">About Mariana</a></li>
-                                   <li><a href="#">Our Best Rooms</a></li>
-                                   <li><a href="#">Our Photo Gellary</a></li>
-                                   <li><a href="#">Pool Service</a></li>
+                                   <li><a href="#aboutMe" class="smoothScroll">About Mariana</a></li>
+                                   <li><a href="#rooms" class="smoothScroll">Our Best Rooms</a></li>
+                                   <li><a href="#gallery" class="smoothScroll">Our Photo Gellary</a></li>
+                                   <li><a href="#services" class="smoothScroll">Our Service</a></li>
                                </ul>
                            </div>
                        </div>
@@ -422,9 +427,9 @@ The floor-to-ceiling windows add to the contemporary ambience and three separate
                            <div class="footer-tittle">
                                <h4>Reservations</h4>
                                <ul>
-                                   <li><a href="#">Tel: 345 5667 889</a></li>
-                                   <li><a href="#">Skype: Marianabooking</a></li>
-                                   <li><a href="#">reservations@hotelriver.com</a></li>
+                                   <li><a href="">Tel: 8793864295</a></li>
+                                   <li><a href="">Skype: Marianabooking</a></li>
+                                   <li><a href="">reservations@hotelmarian.com</a></li>
                                </ul>
                            </div>
                        </div>
@@ -434,8 +439,8 @@ The floor-to-ceiling windows add to the contemporary ambience and three separate
                            <div class="footer-tittle">
                                <h4>Our Location</h4>
                                <ul>
-                                   <li><a href="#">198 West 21th Street,</a></li>
-                                   <li><a href="#">Suite 721 New York NY 10016</a></li>
+                                   <li><a href="#">17 , Shivaji Nagar</a></li>
+                                   <li><a href="#">Pune Maharashtra 411003</a></li>
                                </ul>
                                <!-- Form -->
                                 <div class="footer-form" >

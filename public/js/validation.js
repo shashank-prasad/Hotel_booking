@@ -23,7 +23,14 @@ function validate()
   }
 
 
-
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email))
+  {
+    console.log("IN");
+      return (true);
+    }else{
+      alert("You have entered an invalid email address!");
+      return (false);
+  }
 
 
   var phoneno_pattern = /^\d{10}$/;

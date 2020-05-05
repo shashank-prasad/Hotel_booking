@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <h2 class="title">Register</h2>
                     <h4 style="color:red;"><%=sess.alert%></h4>
-                    <form action="/registered" method="POST" name='register' onsubmit="return validate()">
+                    <form autocomplete="off" action="/registered" method="POST" name='register' onsubmit="return validate()">
                         <div class="row row-space">
                             <div class="col-2">
                                 <div class="input-group">
@@ -73,7 +73,7 @@
                             <div class="col-2">
                                 <div class="input-group">
                                     <label class="label">Email</label>
-                                    <input class="input--style-4" type="email" name="email" required=required>
+                                    <input class="input--style-4"  type="email" name="email" required=required>
                                 </div>
                             </div>
                             <div class="col-2">
