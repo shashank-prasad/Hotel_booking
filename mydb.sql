@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2020 at 12:40 PM
+-- Generation Time: May 08, 2020 at 02:57 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -45,17 +45,16 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`BookingID`, `ClientID`, `Name`, `RoomID`, `NumberOfRooms`, `CheckInDate`, `CheckInTime`, `CheckOutDate`, `Days`) VALUES
-(1, 5, 'Shashank', 6, 1, '2020-05-04', '13:00', '2020-05-09', 5),
-(2, 3, 'Helo', 3, 1, '2020-05-04', '13:00', '2020-05-06', 2),
-(6, 7, 'Niharika Jaiswal', 5, 1, '2020-05-05', '10:00', '2020-05-07', 2),
-(7, 3, 'Sp', 6, 1, '2020-04-21', '01:02', '2020-04-23', 1),
-(8, 27, 'ved', 6, 1, '2020-04-30', '00:00', '2020-05-13', 13),
-(9, 27, 'Sample', 4, 1, '2020-04-23', '01:02', '2020-05-02', 9),
-(10, 6, 'Shashank', 3, 1, '2020-04-30', '12:12', '2020-05-07', 7),
-(11, 27, 'dn', 2, 1, '2020-04-23', '01:01', '2020-04-24', 1),
-(12, 32, 'Fagun', 2, 1, '2020-04-25', '13:02', '2020-04-27', 2),
-(13, 27, 'name', 5, 1, '2020-05-01', '13:02', '2020-05-01', 0),
-(14, 32, 'Shashank', 3, 1, '2020-04-30', '13:01', '2020-05-07', 7);
+(23, 35, 'Shivangi', 4, 2, '2020-04-30', '14:22', '2020-05-02', 2),
+(24, 33, 'Shivangi', 2, 1, '2020-04-27', '02:22', '2020-04-27', 1),
+(25, 33, 'sdf', 2, 2, '2020-04-29', '02:01', '2020-04-30', 1),
+(26, 36, 'harsh', 4, 5, '2020-04-29', '01:01', '2020-04-30', 1),
+(27, 36, 'Ved', 6, 3, '2020-04-28', '02:01', '2020-05-09', 11),
+(28, 37, 'Shashank', 6, 3, '2020-04-29', '13:03', '2020-04-30', 1),
+(29, 38, 'mansi', 1, 2, '2020-05-04', '00:00', '2020-05-11', 7),
+(30, 35, 'Sp', 5, 2, '2020-05-13', '13:02', '2020-05-22', 9),
+(31, 35, 'sf', 2, 2, '2020-05-20', '01:02', '2020-05-22', 2),
+(32, 35, 'Shashank', 3, 1, '2020-05-06', '14:01', '2020-05-07', 1);
 
 -- --------------------------------------------------------
 
@@ -80,20 +79,16 @@ CREATE TABLE `clients` (
 --
 
 INSERT INTO `clients` (`ClientID`, `First_Name`, `Last_Name`, `DOB`, `Email`, `Contact_Number`, `username`, `password`, `Gender`) VALUES
-(1, 'James', 'Gordon', '03/04/1995', 'james.jordon17@gmail.com', 1234567890, 'james_jordan', 'james', 'Male'),
-(2, 'emily', 'Clark', '06/02/1992', 'clark12@gmail.com', 2147483647, 'usename', 'pawoo', 'Female'),
-(3, 'Shrut', 'Desai', '23/12/1998', 'ss@gfh.v', 1234567890, 'shrut_d', 'hello', 'Female'),
-(5, 'Shashank', 'Prasad', '05/08/1999', 'shashank.prasad11@gmail.com', 2147483647, 'sp_vit', 'admin', 'Male'),
-(6, 'Shivangi ', 'Prasad', '29/09/1994', 'shivangiprsd@gmail.com', 2147483647, 'shivangi', 'shivangi', 'Female'),
-(7, 'Niharika', 'Jaiswal', '03/04/1992', 'niharika_03@gmail.com', 2147483647, 'niki', 'niharika', 'Female'),
-(8, 'Shashank', 'Prasad', '15/04/1987', 'shashank@gmail.com', 2147483647, 'sdad', '123', 'Female'),
-(27, 'Harsh', 'Prasad', '20-10-1998', 'vedant20003@gmail.com', 2147483647, 'Vedant', '123456', 'Male'),
-(28, 'Bloody ', 'Marry', '11/04/1984', 'bloody@gmail.com', 1345624569, 'bloody_marry*3', 'hello123', 'Male'),
-(29, 'ssda', 'sdad', '18/04/1985', 'sda@gm.com', 1231231231, 'sd', 'hello123', 'Male'),
-(30, 'sd', 'asd', '16/04/1986', 'sda@f.com', 1231231231, 'qwe', 'hello123', 'Male'),
-(31, 'sad', 'ads', '07/04/1982', 'asd@g.com', 1231231230, 'er', 'hello123', 'Male'),
-(32, 'Fagun', 'Shadi', '23/08/1999', 'fagun.shadi17@vit.edu', 2147483647, 'fagun_shadi23', 'legit123', 'Male'),
-(33, 'Harshit', 'Prasad', '21/05/1994', 'harshit_p@gmail.com', 2147483647, 'harshit_p', '$2b$10$T8FEYtjcjIFynfZXhRTjPeRFtQRpORCp.Jag9J7OPKe7BHdGLdEbe', 'Male');
+(33, 'Harshit', 'Prasad', '21/05/1994', 'harshit_p@gmail.com', 2147483647, 'harshit_p', '$2b$10$T8FEYtjcjIFynfZXhRTjPeRFtQRpORCp.Jag9J7OPKe7BHdGLdEbe', 'Male'),
+(34, 'Emily', 'Rodes', '18/04/1996', 'er@gmail.com', 2147483647, 'emily_r', '$2b$10$hDWiZofDZL1qBnf2bMO56OikKEg/epeFCCkj0qBC18/WoBProCT4.', 'Male'),
+(35, 'Shivangi', 'Prasad', '29/09/1995', 'shivangiprsd@gmail.com', 2147483647, 'shivangi', '$2b$10$2n9GqVBKNmXCIuMoUdinYOWuYPBZfzm7/0gead21L.d2B6JiQAqPK', 'Female'),
+(36, 'Harsh', 'Prasad', '20/10/1998', 'vedant20003@gmail.com', 2147483647, 'Vedant', '$2b$10$CZT4lzTK3.NVm0WLQTOEh.jzjSj35taoda1bg/89kD/E8pkUnm6hK', 'Male'),
+(37, 'Shrut', 'Desai', '23/12/1998', 'shrutd@gmail.com', 2147483647, 'shrut_d', '$2b$10$7pHOKVCOwHlNNTEG/aC9o.4XjfiGR1DcfOTr..ziMgyr.9uN56tdS', 'Female'),
+(38, 'mansi', 'jaiswal', '05/04/2001', 'mansijaiswal0504@gmail.com', 2147483647, 'mansi jaiswal', '$2b$10$3xLn3mocWgd3XJpQMMrP1ubvHU.bkXHHGhJ4lLuICY/XrKew3TkK.', 'Female'),
+(40, 'admin', 'admin', '14/05/1991', 'ad@gmail.com', 1234567890, 'admin123', '$2b$10$.0CsH7CwtfFbLdyEAj/O2.SerXAo2sxNmikZe8.lWrdgHzfFDRJ4i', 'Male'),
+(41, 'aishwarya', 'Chandak', '10/05/1972', 'asih@gmail', 1234567898, 'aish', '$2b$10$wB.roZIvCvsbk4cAmpBL9ertrSz7eMIAWWLtUdIRviwTQjf1PxH06', 'Female'),
+(42, 'Pradnya', 'Katariya', '08/05/1986', 'pradnya@gmail', 1234567892, 'pradz', '$2b$10$N80Kie9hCiEnn36veuduU.PNxSpNjQOxzbNhL0500ZJxrc05zztKW', 'Female'),
+(43, 'Harsh', 'P', '04/05/1994', 'harsh@gmail.com', 1234567897, 'harsh', '$2b$10$YOEtSfL5XG3awc3ei/vZWe9A84j3j4g6EQrIWE5OJHuc6G0/BNx02', 'Male');
 
 -- --------------------------------------------------------
 
@@ -104,7 +99,7 @@ INSERT INTO `clients` (`ClientID`, `First_Name`, `Last_Name`, `DOB`, `Email`, `C
 CREATE TABLE `payment` (
   `Payment ID` int(11) NOT NULL,
   `BookingID` int(11) NOT NULL,
-  `Card_Number` bigint(20) NOT NULL,
+  `Card_Number` text NOT NULL,
   `Card_Expiration_date` text NOT NULL,
   `CVV` int(11) NOT NULL,
   `Owner_name` text NOT NULL
@@ -115,13 +110,16 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`Payment ID`, `BookingID`, `Card_Number`, `Card_Expiration_date`, `CVV`, `Owner_name`) VALUES
-(1, 7, 1234567894562134, '04/12', 256, 'Shashank Prasad'),
-(2, 9, 1234564564789657, '04/22', 256, 'Vedant'),
-(3, 10, 1234123412341234, '11/22', 234, 'Shivangi'),
-(4, 11, 1234123412341234, '11/22', 123, 'ads'),
-(5, 12, 1234123412341234, '08/22', 213, 'Fagun'),
-(6, 13, 1234564564789654, '08/22', 789, 'SP'),
-(7, 14, 1234123412341234, '12/21', 122, 'Hello');
+(16, 23, '$2b$10$rHoEDNJjwGamfzHYtXuhZu7Jpg5KS.01m0tN8wT7ZeQg3NuVsRdh6', '11/24', 253, 'Shivangi'),
+(17, 24, '$2b$10$N1qZV/zCJWcDoWilDgV4z.WgAx5ZCt7EiINaBmKve3nAiKmDUPY1C', '12/21', 345, 'Harsh'),
+(18, 25, '$2b$10$f/y66PHtV7xsQchwrzBKY.Nxmgo3tqSktLt0oe5KCCnWtUw95HKNK', '08/22', 256, 'Shashank'),
+(19, 26, '$2b$10$8WkIY/vgtPq60BKnypQXZ.yFkibA/Gfs1ieUX70zFMBnuwtX6TkPG', '12/21', 246, 'Harsh'),
+(20, 27, '$2b$10$g3.H/NO0AiqMa8InGMrUCOvqiWEQTGAjmtjMk4CS.0VOy7OkeQ6xm', '02/24', 145, 'VED'),
+(21, 28, '$2b$10$LfVArm.fHNWdhaWpdIOl/OEyXk5lNX0lYLJ8MInTr2BMetD8GG67W', '07/21', 256, 'Shashank'),
+(22, 29, '$2b$10$qHO3fvyWU4TvqL/SKGbvxeYgNQ8WEsdItCjGv2Xi1dxhNLT68MRBm', '04/25', 481, 'Mansi'),
+(23, 30, '$2b$10$l08W.xBxNprbTDQKO3jspusFN1DekDa2hTlp1MQuKWm3N1m9Zgpee', '12/23', 256, 'SP'),
+(24, 31, '$2b$10$QRV9VvqbUIpKL0i1AfMCDeTiWqNTEyI3uRkj72e0ngBecgPnllKKO', '10/25', 564, 'hello'),
+(25, 32, '$2b$10$sudMhD.rry3UDr41Z6T9muFX7p/rc9HnHwftkldc5AMosaiTta8qO', '02/25', 456, 'Shahank');
 
 -- --------------------------------------------------------
 
@@ -133,40 +131,21 @@ CREATE TABLE `rooms` (
   `RoomID` int(11) NOT NULL,
   `RoomType` text NOT NULL,
   `GuestsCapacity` int(11) NOT NULL,
-  `Fare` int(11) NOT NULL
+  `Fare` int(11) NOT NULL,
+  `Rooms_available` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`RoomID`, `RoomType`, `GuestsCapacity`, `Fare`) VALUES
-(1, 'Single Room', 1, 1500),
-(2, 'Deluxe Room', 2, 2500),
-(3, 'Super Deluxe Room', 3, 3500),
-(4, 'Executive Suite', 6, 7000),
-(5, 'Garden Suite', 8, 8000),
-(6, 'President Suite', 8, 10000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sampletable`
---
-
-CREATE TABLE `sampletable` (
-  `ID` int(150) NOT NULL,
-  `Full Name` text NOT NULL,
-  `Email` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sampletable`
---
-
-INSERT INTO `sampletable` (`ID`, `Full Name`, `Email`) VALUES
-(1, 'James Bond', 'james.bond@yahoo.com'),
-(2, 'Tony Start', 'tony_ironman@gmail.com');
+INSERT INTO `rooms` (`RoomID`, `RoomType`, `GuestsCapacity`, `Fare`, `Rooms_available`) VALUES
+(1, 'Single Room', 1, 2000, 21),
+(2, 'Deluxe Room', 2, 2500, 23),
+(3, 'Super Deluxe Room', 3, 3500, 24),
+(4, 'Executive Suite', 6, 7000, 30),
+(5, 'Garden Suite', 8, 8000, 23),
+(6, 'President Suite', 8, 10000, 25);
 
 --
 -- Indexes for dumped tables
@@ -200,12 +179,6 @@ ALTER TABLE `rooms`
   ADD PRIMARY KEY (`RoomID`);
 
 --
--- Indexes for table `sampletable`
---
-ALTER TABLE `sampletable`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -213,31 +186,25 @@ ALTER TABLE `sampletable`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `BookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `BookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `Payment ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Payment ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
   MODIFY `RoomID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `sampletable`
---
-ALTER TABLE `sampletable`
-  MODIFY `ID` int(150) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
